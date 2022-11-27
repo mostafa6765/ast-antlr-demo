@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@theGrammer/*": ["my-grammer/*"],
+      "@utils/*": ["utils/*"]
+    }
+  }
+}

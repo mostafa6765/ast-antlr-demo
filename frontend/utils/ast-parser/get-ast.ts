@@ -1,10 +1,10 @@
 import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker'
-import { TypeScriptParserListener } from '@theGrammer/TypeScriptParserListener';
+import { TypeScriptParserListener } from '@theGrammar/TypeScriptParserListener';
 import {
   VariableDeclarationContext,
   ClassDeclarationContext,
   FunctionDeclarationContext,
-} from '@theGrammer/TypeScriptParser';
+} from '@theGrammar/TypeScriptParser';
 import getText from './get-text';
 
 

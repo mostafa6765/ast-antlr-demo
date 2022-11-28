@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
-import { TypeScriptLexer } from '@theGrammer/TypeScriptLexer';
-import { TypeScriptParser } from '@theGrammer/TypeScriptParser';
+import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
+import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
 import getAST from '@utils/ast-parser/get-ast';
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 

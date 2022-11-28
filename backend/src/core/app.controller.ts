@@ -8,7 +8,7 @@ export class AppController {
 
   @Get()
   getHello(@Res() res: Response,@Req() req:Request): any {
-    let a: any = this.appService.getHello();
-    res.json(a)
+    let output: any = this.appService.getHello();
+    res.json(output)
   }
 }

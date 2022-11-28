@@ -17,7 +17,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "generate": "antlr4ts -Dlanguage=JavaScript -visitor ./my-grammer/TypeScriptLexer.g4 ./my-grammer/TypeScriptParser.g4"
+    "generate-antlr4": "antlr4ts -Dlanguage=JavaScript -visitor ./src/lib/my-grammar/TypeScriptLexer.g4 ./src/lib/my-grammar/TypeScriptParser.g4"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

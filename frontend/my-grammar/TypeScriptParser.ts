@@ -1,4 +1,4 @@
-// Generated from ./my-grammer/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./my-grammar/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -26,6 +26,7 @@ import * as Utils from "antlr4ts/misc/Utils";
 import { TypeScriptParserListener } from "./TypeScriptParserListener";
 import { TypeScriptParserVisitor } from "./TypeScriptParserVisitor";
 import { TypeScriptParserBase } from "./TypeScriptParserBase";
+
 
 export class TypeScriptParser extends TypeScriptParserBase {
 	public static readonly MultiLineComment = 1;

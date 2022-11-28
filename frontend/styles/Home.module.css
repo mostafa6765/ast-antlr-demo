@@ -24,6 +24,11 @@
   text-align: center;
 }
 
+.link{
+  text-align: center;
+  color: blue;
+}
+
 .footer {
   display: flex;
   flex: 1;

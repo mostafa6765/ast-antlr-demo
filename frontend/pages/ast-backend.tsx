@@ -1,22 +1,21 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
-
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 import Editor from "@monaco-editor/react";
 import { http } from '@utils/http/axios';
 import exampleCodeData from '@constant/example-code';
 
 export default function Home() {
-  const [code, setCode] = useState('' as any)
-  const [theTree, setTheTree] = useState('' as any)
+  const [code, setCode] = useState('' as any);
+  const [theTree, setTheTree] = useState('' as any);
 
   useEffect(() => {
-    setCode(exampleCodeData)
+    setCode(exampleCodeData);
   }, [])
   
   function handleEditorChange(value: any, event: any) {
-    setCode(value)
+    setCode(value);
   }
 
   function generateAST() {
@@ -42,6 +41,9 @@ export default function Home() {
           <h1 className={styles.title}>
             Abstract Syntax Tree (AST Demo)
           </h1>
+          <p className={styles.link}>
+            <Link href="/"> Go Without Backend api</Link>
+          </p>
         </div>
         <div className={styles.grid}>
           <div className={styles.element_code}>

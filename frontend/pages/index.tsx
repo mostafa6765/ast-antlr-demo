@@ -1,8 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import styles from '../styles/Home.module.css'
-
+import Head from 'next/head';
+import { useEffect, useState } from 'react';
+import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
 import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
 import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
@@ -12,19 +11,19 @@ import exampleCodeData from '@constant/example-code';
 
 
 export default function Home() {
-  const [code, setCode] = useState('' as any)
-  const [theTree, setTheTree] = useState('' as any)
+  const [code, setCode] = useState('' as any);
+  const [theTree, setTheTree] = useState('' as any);
 
   useEffect(() => {
-    setCode(exampleCodeData)
+    setCode(exampleCodeData);
   }, [])
   
   useEffect(() => {
-    generateAST()
+    generateAST();
   }, [code])
 
   function handleEditorChange(value: any, event: any) {
-    setCode(value)
+    setCode(value);
   }
 
   function generateAST() {
@@ -33,9 +32,9 @@ export default function Home() {
     let tokenStream: any = new CommonTokenStream(lexer);
     let parser: any = new TypeScriptParser(tokenStream);
     parser.buildParseTree = true;
-    let tree: any = parser.program()
-    let ast: any = getAST(tree)
-    setTheTree(ast)
+    let tree: any = parser.program();
+    let ast: any = getAST(tree);
+    setTheTree(ast);
   }
   
   return (
@@ -51,6 +50,9 @@ export default function Home() {
           <h1 className={styles.title}>
             Abstract Syntax Tree (AST Demo)
           </h1>
+          <p className={styles.link}>
+            <Link href="/ast-backend"> Go With backend api</Link>
+          </p>
         </div>
         <div className={styles.grid}>
           <div className={styles.element_code}>

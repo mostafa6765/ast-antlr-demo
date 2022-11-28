@@ -114,7 +114,7 @@ export abstract class TypeScriptParserBase extends Parser {
         const type = ahead.type;
 
         // Check if the token is, or contains a line terminator.
-        return (type == TypeScriptParser.MultiLineComment && (text.includes("\r") || text.includes("\n"))) ||
+        return (type == TypeScriptParser.MultiLineComment && (text?.includes("\r") || text?.includes("\n"))) ||
                 (type == TypeScriptParser.LineTerminator);
     }
 }

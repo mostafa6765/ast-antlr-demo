@@ -55,6 +55,7 @@ export abstract class TypeScriptLexerBase extends Lexer {
     }
 
     public IsStrictMode(): boolean {
+        // @ts-ignore
         return this.useStrictCurrent;
     }
 
@@ -89,6 +90,7 @@ export abstract class TypeScriptLexerBase extends Lexer {
     }
 
     protected ProcessCloseBrace() {
+        // @ts-ignore
         this.useStrictCurrent = this.scopeStrictModes.length > 0 ? this.scopeStrictModes.pop() : this.UseStrictDefault;
     }
 

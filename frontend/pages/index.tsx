@@ -79,7 +79,7 @@ export default function Home() {
   }, [])
   
   useEffect(() => {
-    //generateAST()
+    generateAST()
   }, [code])
 
   function handleEditorChange(value: any, event: any) {

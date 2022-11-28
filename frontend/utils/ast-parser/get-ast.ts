@@ -4,7 +4,6 @@ import {
   VariableDeclarationContext,
   ClassDeclarationContext,
   FunctionDeclarationContext,
-  StatementContext
 } from '@theGrammer/TypeScriptParser';
 import getText from './get-text';
 
@@ -62,11 +61,6 @@ class EnterFunctionListener implements TypeScriptParserListener {
     }
     output.push(data)
   }
-
-  public exitStatement = (ctx: StatementContext): void => {
-    // Do your processing here.
-    console.log(ctx)
-};
 }
 
 /**

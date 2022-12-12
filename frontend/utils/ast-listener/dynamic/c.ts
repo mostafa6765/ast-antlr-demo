@@ -1,4 +1,4 @@
-import getCAST from "../listeners/c-ast"
+import getAST from "../listeners/c-ast"
 
 export class CAst {
   code: any
@@ -8,7 +8,7 @@ export class CAst {
   }
 
   getAstData() {
-    return getCAST(this.code)
+    return getAST(this.code)
   }
   
 }

@@ -1,6 +1,6 @@
-import getAST from "../listeners/typescript-ast"
+import getAST from "../listeners/cpp-ast"
 
-export class TypescriptAst {
+export class CPPAst {
   code: any
 
   constructor(code: any) {

@@ -2,16 +2,10 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
-import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
-import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
-import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
-import getAST from '@utils/ast-parser/get-ast';
 import Editor from "@monaco-editor/react";
-import exampleCodeData from '@constant/c-example-code';
-
-import { CLexer } from '@theGrammar/c/CLexer';
-import { CParser } from '@theGrammar/c/CParser';
+import exampleCodeData from '@constant/cpp-example-code';
 import { ASTListener } from '@utils/ast-listener';
+
 export default function Home() {
   const [code, setCode] = useState('' as any);
   const [theTree, setTheTree] = useState('' as any);
@@ -29,7 +23,7 @@ export default function Home() {
   }
 
   function generateAST() {
-    let ast: any = new ASTListener('CAst', code)
+    let ast: any = new ASTListener('CPPAst', code)
     setTheTree(ast.getAstData())
     console.log(ast.getAstData())
   }
@@ -53,10 +47,10 @@ export default function Home() {
         </div>
         <div className={styles.grid}>
           <div className={styles.element_code}>
-            <p>c code</p>
+            <p>cpp code</p>
             <Editor
               height="60vh"
-              defaultLanguage="c"
+              defaultLanguage="cpp"
               defaultValue={code}
               onChange={handleEditorChange}
             />

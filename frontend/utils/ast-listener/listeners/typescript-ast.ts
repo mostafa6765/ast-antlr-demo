@@ -8,7 +8,6 @@ import {
   ClassDeclarationContext,
   FunctionDeclarationContext,
 } from '@theGrammar/TypeScriptParser';
-import getText from '../lib/get-text';
 import getData from '../lib/get-data';
 
 var output: any = [];
@@ -59,7 +58,7 @@ class EnterFunctionListener implements TypeScriptParserListener {
  * @param tree 
  * @returns {object}
  */
-function getTypescriptAST(code: any): object {
+function getAST(code: any): object {
   output = [];
   id = -1;
 
@@ -75,4 +74,4 @@ function getTypescriptAST(code: any): object {
   return output;
 }
 
-export default getTypescriptAST
+export default getAST

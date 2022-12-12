@@ -7,10 +7,11 @@ import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
 import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
 import getAST from '@utils/ast-parser/get-ast';
 import Editor from "@monaco-editor/react";
-import exampleCodeData from '@constant/example-code';
+import exampleCodeData from '@constant/c-example-code';
 
+import { CLexer } from '@theGrammar/c/CLexer';
+import { CParser } from '@theGrammar/c/CParser';
 import { ASTListener } from '@utils/ast-listener';
-
 export default function Home() {
   const [code, setCode] = useState('' as any);
   const [theTree, setTheTree] = useState('' as any);
@@ -28,17 +29,9 @@ export default function Home() {
   }
 
   function generateAST() {
-    // let inputStream: any = new ANTLRInputStream(code);
-    // let lexer: any = new TypeScriptLexer(inputStream);
-    // let tokenStream: any = new CommonTokenStream(lexer);
-    // let parser: any = new TypeScriptParser(tokenStream);
-    // parser.buildParseTree = true;
-    // let tree: any = parser.program();
-    // let ast: any = getAST(tree);
-    // setTheTree(ast);
-
-    let ast: any = new ASTListener('TypescriptAst', code)
+    let ast: any = new ASTListener('CAst', code)
     setTheTree(ast.getAstData())
+    console.log(ast.getAstData())
   }
   
   return (
@@ -63,7 +56,7 @@ export default function Home() {
             <p>Javascript/Typescript code</p>
             <Editor
               height="60vh"
-              defaultLanguage="javascript"
+              defaultLanguage="c"
               defaultValue={code}
               onChange={handleEditorChange}
             />

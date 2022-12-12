@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@theGrammar/*": ["my-grammar/*"],
+      "@theGrammar/*": ["my-grammar/*", "the-grammar/*"],
       "@utils/*": ["utils/*"],
       "@constant/*": ["constant/*"]
     }

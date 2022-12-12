@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-antlr4": "antlr4ts -Dlanguage=JavaScript -visitor ./my-grammar/TypeScriptLexer.g4 ./my-grammar/TypeScriptParser.g4"
+    "generate-antlr4": "antlr4ts -Dlanguage=JavaScript -visitor ./the-grammar/c/C.g4"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",

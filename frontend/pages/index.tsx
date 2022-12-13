@@ -2,42 +2,43 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
-import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
-import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
-import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
-import getAST from '@utils/ast-parser/get-ast';
 import Editor from "@monaco-editor/react";
-import exampleCodeData from '@constant/example-code';
-
+import tsExampleCodeData from '@constant/example-code';
+import cExampleCodeData from '@constant/c-example-code'
+import cppExampleCodeData from '@constant/cPP-example-code'
+import SelectLang from '@component/Select';
 import { ASTListener } from '@utils/ast-listener';
 
 export default function Home() {
   const [code, setCode] = useState('' as any);
   const [theTree, setTheTree] = useState('' as any);
-
-  useEffect(() => {
-    setCode(exampleCodeData);
-  }, [])
+  const [selectedLang, setSelectedLang] = useState('' as any)
   
   useEffect(() => {
-    generateAST();
+    if (selectedLang !== '') {
+      generateAST();
+    }
   }, [code])
 
   function handleEditorChange(value: any, event: any) {
     setCode(value);
   }
 
-  function generateAST() {
-    // let inputStream: any = new ANTLRInputStream(code);
-    // let lexer: any = new TypeScriptLexer(inputStream);
-    // let tokenStream: any = new CommonTokenStream(lexer);
-    // let parser: any = new TypeScriptParser(tokenStream);
-    // parser.buildParseTree = true;
-    // let tree: any = parser.program();
-    // let ast: any = getAST(tree);
-    // setTheTree(ast);
+  function setTheLang(data: any) {
+    let getData: any = data
+    if (data.langOptions?.lang === 'c') {
+      getData['code'] = cExampleCodeData
+    } else if (data.langOptions?.lang === 'cpp') {
+      getData['code'] = cppExampleCodeData
+    } else if (data.langOptions?.lang === 'typescript') {
+      getData['code'] = tsExampleCodeData
+    }
+    setSelectedLang(getData)
+    setCode(getData['code'])
+  }
 
-    let ast: any = new ASTListener('TypescriptAst', code)
+  function generateAST() {
+    let ast: any = new ASTListener(selectedLang?.langOptions?.ast, code)
     setTheTree(ast.getAstData())
   }
   
@@ -60,11 +61,17 @@ export default function Home() {
         </div>
         <div className={styles.grid}>
           <div className={styles.element_code}>
-            <p>Javascript/Typescript code</p>
+          <div>
+            <SelectLang
+              setTheLang={setTheLang}
+            />
+          </div>
+            <p>{selectedLang?.name} code</p>
             <Editor
               height="60vh"
-              defaultLanguage="javascript"
-              defaultValue={code}
+              defaultLanguage={selectedLang.langOptions?.lang}
+              defaultValue={selectedLang.code}
+              value={code}
               onChange={handleEditorChange}
             />
           </div>
@@ -72,7 +79,7 @@ export default function Home() {
             <button onClick={() => generateAST()} >Generate</button>
           </div>
           <div className={styles.element_code}>
-            <p>AST (json format)</p>
+            <p>{selectedLang?.langOptions?.ast} (json format)</p>
             <Editor
               height="60vh"
               defaultLanguage="json"

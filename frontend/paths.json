@@ -4,7 +4,8 @@
     "paths": {
       "@theGrammar/*": ["the-grammar/*"],
       "@utils/*": ["utils/*"],
-      "@constant/*": ["constant/*"]
+      "@constant/*": ["constant/*"],
+      "@component/*": ["component/*"]
     }
   }
 }

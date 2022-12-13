@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "antlr4-c": "antlr4ts -Dlanguage=JavaScript -visitor ./the-grammar/c/C.g4",
-    "antlr4-cpp": "antlr4ts -Dlanguage=JavaScript -visitor ./the-grammar/cpp/CPPLexer.g4 ./the-grammar/cpp/CPPParser.g4"
+    "antlr4-cpp": "antlr4ts -Dlanguage=JavaScript -visitor ./the-grammar/cpp/CPPLexer.g4 ./the-grammar/cpp/CPPParser.g4",
+    "antlr4-ts": "antlr4ts -Dlanguage=JavaScript -visitor ./the-grammar/typescript/TypeScriptLexer.g4 ./the-grammar/typescript/TypeScriptParser.g4"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",

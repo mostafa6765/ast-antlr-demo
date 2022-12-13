@@ -1,13 +1,13 @@
 import { ParseTreeWalker } from 'antlr4ts/tree/ParseTreeWalker'
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
-import { TypeScriptLexer } from '@theGrammar/TypeScriptLexer';
-import { TypeScriptParser } from '@theGrammar/TypeScriptParser';
-import { TypeScriptParserListener } from '@theGrammar/TypeScriptParserListener';
+import { TypeScriptParser } from '@theGrammar/typescript/TypeScriptParser';
+import { TypeScriptLexer } from '@theGrammar/typescript/TypeScriptLexer';
+import { TypeScriptParserListener } from '@theGrammar/typescript/TypeScriptParserListener';
 import {
   VariableDeclarationContext,
   ClassDeclarationContext,
   FunctionDeclarationContext,
-} from '@theGrammar/TypeScriptParser';
+} from '@theGrammar/typescript/TypeScriptParser';
 import getData from '../lib/get-data';
 
 var output: any = [];

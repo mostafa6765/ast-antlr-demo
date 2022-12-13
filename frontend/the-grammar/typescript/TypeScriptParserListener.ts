@@ -1,4 +1,7 @@
-// Generated from ./my-grammar/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./the-grammar/typescript/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
+
+
+import { TypeScriptParserBase } from "./base/TypeScriptParserBase";
 
 
 import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";

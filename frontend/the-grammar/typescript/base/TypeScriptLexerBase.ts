@@ -1,5 +1,5 @@
 import {Lexer, Token, CharStream} from "antlr4ts";
-import {TypeScriptLexer} from './TypeScriptLexer';
+import {TypeScriptLexer} from '../TypeScriptLexer';
 
 /**
  * All lexer methods that used in grammar (IsStrictMode)

@@ -6,6 +6,10 @@ options {
     superClass=TypeScriptLexerBase;
 }
 
+@header{
+import { TypeScriptLexerBase } from "./base/TypeScriptLexerBase";
+}
+
 
 MultiLineComment:               '/*' .*? '*/'             -> channel(HIDDEN);
 SingleLineComment:              '//' ~[\r\n\u2028\u2029]* -> channel(HIDDEN);

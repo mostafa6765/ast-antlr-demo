@@ -1,4 +1,7 @@
-// Generated from ./my-grammar/TypeScriptLexer.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./the-grammar/typescript/TypeScriptLexer.g4 by ANTLR 4.9.0-SNAPSHOT
+
+
+import { TypeScriptLexerBase } from "./base/TypeScriptLexerBase";
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -13,7 +16,7 @@ import { Vocabulary } from "antlr4ts/Vocabulary";
 import { VocabularyImpl } from "antlr4ts/VocabularyImpl";
 
 import * as Utils from "antlr4ts/misc/Utils";
-import { TypeScriptLexerBase } from "./TypeScriptLexerBase";
+
 
 export class TypeScriptLexer extends TypeScriptLexerBase {
 	public static readonly MultiLineComment = 1;

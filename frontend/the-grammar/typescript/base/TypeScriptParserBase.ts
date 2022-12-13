@@ -1,5 +1,5 @@
 import {Parser, Lexer, Token, TokenStream} from 'antlr4ts';
-import {TypeScriptParser} from './TypeScriptParser';
+import {TypeScriptParser} from '../TypeScriptParser';
 
 /**
  * All parser methods that used in grammar (p, prev, notLineTerminator, etc.)

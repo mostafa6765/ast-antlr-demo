@@ -35,6 +35,10 @@ options {
     superClass=TypeScriptParserBase;
 }
 
+@header{
+import { TypeScriptParserBase } from "./base/TypeScriptParserBase";
+}
+
 // SupportSyntax
 
 initializer
@@ -96,7 +100,7 @@ primaryType
     | predefinedType                                #PredefinedPrimType
     | typeReference                                 #ReferencePrimType
     | objectType                                    #ObjectPrimType
-    | primaryType {notLineTerminator()}? '[' ']'    #ArrayPrimType
+    | primaryType {this.notLineTerminator()}? '[' ']'    #ArrayPrimType
     | '[' tupleElementTypes ']'                     #TuplePrimType
     | typeQuery                                     #QueryPrimType
     | This                                          #ThisPrimType
@@ -162,7 +166,7 @@ typeMember
     ;
 
 arrayType
-    : primaryType {notLineTerminator()}? '[' ']'
+    : primaryType {this.notLineTerminator()}? '[' ']'
     ;
 
 tupleType

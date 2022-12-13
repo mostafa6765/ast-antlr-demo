@@ -1,4 +1,7 @@
-// Generated from ./my-grammar/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
+// Generated from ./the-grammar/typescript/TypeScriptParser.g4 by ANTLR 4.9.0-SNAPSHOT
+
+
+import { TypeScriptParserBase } from "./base/TypeScriptParserBase";
 
 
 import { ATN } from "antlr4ts/atn/ATN";
@@ -25,7 +28,6 @@ import * as Utils from "antlr4ts/misc/Utils";
 
 import { TypeScriptParserListener } from "./TypeScriptParserListener";
 import { TypeScriptParserVisitor } from "./TypeScriptParserVisitor";
-import { TypeScriptParserBase } from "./TypeScriptParserBase";
 
 
 export class TypeScriptParser extends TypeScriptParserBase {
@@ -1038,7 +1040,7 @@ export class TypeScriptParser extends TypeScriptParserBase {
 					}
 					this.state = 377;
 					if (!(this.notLineTerminator())) {
-						throw this.createFailedPredicateException("notLineTerminator()");
+						throw this.createFailedPredicateException("this.notLineTerminator()");
 					}
 					this.state = 378;
 					this.match(TypeScriptParser.OpenBracket);
@@ -1524,7 +1526,7 @@ export class TypeScriptParser extends TypeScriptParserBase {
 			this.primaryType(0);
 			this.state = 444;
 			if (!(this.notLineTerminator())) {
-				throw this.createFailedPredicateException("notLineTerminator()");
+				throw this.createFailedPredicateException("this.notLineTerminator()");
 			}
 			this.state = 445;
 			this.match(TypeScriptParser.OpenBracket);

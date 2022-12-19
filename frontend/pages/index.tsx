@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 import Editor from "@monaco-editor/react";
@@ -13,6 +13,7 @@ export default function Home() {
   const [code, setCode] = useState('' as any);
   const [theTree, setTheTree] = useState('' as any);
   const [selectedLang, setSelectedLang] = useState('' as any)
+  const editorRef: any = useRef()
   
   useEffect(() => {
     if (selectedLang !== '') {
@@ -41,6 +42,18 @@ export default function Home() {
     let ast: any = new ASTListener(selectedLang?.langOptions?.ast, code)
     setTheTree(ast.getAstData())
   }
+
+  function handleEditorDidMount(editor: any, monaco: any) {
+    editorRef.current = editor
+  }
+
+  function getSelection() {
+    let data:any = editorRef.current
+        .getModel()
+        .getValueInRange(editorRef.current.getSelection())
+    console.log(data)
+    console.log(editorRef.current)
+  }
   
   return (
     <div className={styles.container}>
@@ -55,8 +68,9 @@ export default function Home() {
           <h1 className={styles.title}>
             Abstract Syntax Tree (AST Demo)
           </h1>
+          {/* <button onClick={a} >a</button> */}
           <p className={styles.link}>
-            <Link href="/ast-backend"> Go With backend api</Link>
+            {/* <Link href="/ast-backend"> Go With backend api</Link> */}
           </p>
         </div>
         <div className={styles.grid}>
@@ -73,6 +87,7 @@ export default function Home() {
               defaultValue={selectedLang.code}
               value={code}
               onChange={handleEditorChange}
+              onMount={handleEditorDidMount}
             />
           </div>
           <div className={styles.element_button}>

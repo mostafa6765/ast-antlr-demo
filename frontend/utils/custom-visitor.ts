@@ -1,7 +1,7 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import { TypeScriptParserVisitor } from '@theGrammar/typescript/TypeScriptParserVisitor'
 import { AsExpressionContext, ClassDeclarationContext, ClassExpressionContext, FromBlockContext, FunctionBodyContext, FunctionDeclarationContext, FunctionExpressionContext, IdentifierExpressionContext, IdentifierNameContext, ImportStatementContext, PropertyAssignmentContext, Type_Context, VariableDeclarationContext, VariableStatementContext } from '@theGrammar/typescript/TypeScriptParser'
-
+import getText from './ast-listener/lib/get-text'
 
 
 
@@ -15,54 +15,54 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
     this.chunkData = []
   }
 
-  generateText(ctx: any, input: any){
-    let start: number = ctx._start?.startIndex;
-    let stop: any = ctx._stop?.stopIndex;
-    return input?.data?.slice(start, stop + 1)
-  }
-
   defaultResult() {
     return " "
   }
 
   visitClassDeclaration(ctx: ClassDeclarationContext) {
-    this.chunkData.push(this.generateText(ctx, this.rawInputData))
+    this.chunkData.push(getText(ctx, this.rawInputData))
     console.log(ctx)
     this.visitChildren(ctx)
-    return '\n\n' + this.generateText(ctx, this.rawInputData)
+    return '\n\n' + getText(ctx, this.rawInputData)
   }
 
   visitFunctionDeclaration(ctx: FunctionDeclarationContext) {
-    this.chunkData.push(this.generateText(ctx, this.rawInputData))
+    this.chunkData.push(getText(ctx, this.rawInputData))
     this.visitChildren(ctx)
-    return '\n\n' + this.generateText(ctx, this.rawInputData)
+    return '\n\n' + getText(ctx, this.rawInputData)
   }
 
   visitFunctionExpression(ctx: FunctionExpressionContext) {
-    this.chunkData.push(this.generateText(ctx, this.rawInputData))
-    return this.generateText(ctx, this.rawInputData)
+    this.chunkData.push(getText(ctx, this.rawInputData))
+    return getText(ctx, this.rawInputData)
   }
 
   visitVariableStatement(ctx: VariableStatementContext) {
-    this.chunkData.push(this.generateText(ctx, this.rawInputData))
-    return '\n' + this.generateText(ctx, this.rawInputData)
+    this.chunkData.push(getText(ctx, this.rawInputData))
+    return '\n' + getText(ctx, this.rawInputData)
   }
 
   visitImportStatement(ctx: ImportStatementContext) {
-    this.chunkData.push(this.generateText(ctx, this.rawInputData))
-    return '\n' + this.generateText(ctx, this.rawInputData)
+    this.chunkData.push(getText(ctx, this.rawInputData))
+    return '\n' + getText(ctx, this.rawInputData)
   }
 
   visitIdentifierExpression(ctx: IdentifierExpressionContext) {
-    //this.chunkData.push(this.generateText(ctx, this.rawInputData))
-    return  this.generateText(ctx, this.rawInputData)
+    //this.chunkData.push(getText(ctx, this.rawInputData))
+    return  getText(ctx, this.rawInputData)
   }
 
   visitIdentifierName(ctx: IdentifierNameContext) {
-    return  this.generateText(ctx, this.rawInputData)
+    return  getText(ctx, this.rawInputData)
   }
 
-  // visit children
+  /**
+   * Traverse node.
+   * 
+   * @see {@link https://www.antlr.org/api/Java/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.html}
+   * @param ctx 
+   * @returns 
+   */
   visitChildren(ctx: any) {
     let code = '';
     for (let i = 0; i < ctx?.childCount; i++) {
@@ -71,7 +71,13 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
     return code;
   }
 
-  // visit terminal
+  /**
+   * Traverse token.
+   * 
+   * @see {@link https://www.antlr.org/api/Java/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.html}
+   * @param ctx 
+   * @returns 
+   */
   visitTerminal(ctx: any) {
     if (ctx.text === "<EOF>") {
       return ""

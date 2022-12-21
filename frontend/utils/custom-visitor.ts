@@ -1,10 +1,10 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import { TypeScriptParserVisitor } from '@theGrammar/typescript/TypeScriptParserVisitor'
-import { AsExpressionContext, ClassDeclarationContext, ClassExpressionContext, FromBlockContext, FunctionBodyContext, FunctionDeclarationContext, FunctionExpressionContext, IdentifierExpressionContext, IdentifierNameContext, ImportStatementContext, PropertyAssignmentContext, Type_Context, VariableDeclarationContext, VariableStatementContext } from '@theGrammar/typescript/TypeScriptParser'
+import { AsExpressionContext, ClassDeclarationContext, ClassExpressionContext, FromBlockContext, FunctionBodyContext, FunctionDeclarationContext, FunctionExpressionContext, IdentifierExpressionContext, IdentifierNameContext, ImportStatementContext, NewExpressionContext, PropertyAssignmentContext, Type_Context, VariableDeclarationContext, VariableStatementContext } from '@theGrammar/typescript/TypeScriptParser'
 import getText from './ast-listener/lib/get-text'
 
 
-
+ 
 class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptParserVisitor<any> {
   rawInputData: any
   chunkData: any = []
@@ -21,7 +21,6 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
 
   visitClassDeclaration(ctx: ClassDeclarationContext) {
     this.chunkData.push(getText(ctx, this.rawInputData))
-    console.log(ctx)
     this.visitChildren(ctx)
     return '\n\n' + getText(ctx, this.rawInputData)
   }
@@ -39,6 +38,7 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
 
   visitVariableStatement(ctx: VariableStatementContext) {
     this.chunkData.push(getText(ctx, this.rawInputData))
+    this.visitChildren(ctx)
     return '\n' + getText(ctx, this.rawInputData)
   }
 
@@ -49,6 +49,9 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
 
   visitIdentifierExpression(ctx: IdentifierExpressionContext) {
     //this.chunkData.push(getText(ctx, this.rawInputData))
+    if (ctx.text === 'console') {
+      return '\n' + getText(ctx, this.rawInputData)
+    }
     return  getText(ctx, this.rawInputData)
   }
 

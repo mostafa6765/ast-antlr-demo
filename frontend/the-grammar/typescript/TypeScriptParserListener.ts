@@ -176,7 +176,9 @@ import { CatchProductionContext } from "./TypeScriptParser";
 import { FinallyProductionContext } from "./TypeScriptParser";
 import { DebuggerStatementContext } from "./TypeScriptParser";
 import { FunctionDeclarationContext } from "./TypeScriptParser";
+import { FunctionTypoDeclarationContext } from "./TypeScriptParser";
 import { ClassDeclarationContext } from "./TypeScriptParser";
+import { ClassTypoDeclarationContext } from "./TypeScriptParser";
 import { ClassHeritageContext } from "./TypeScriptParser";
 import { ClassTailContext } from "./TypeScriptParser";
 import { ClassExtendsClauseContext } from "./TypeScriptParser";
@@ -2256,6 +2258,17 @@ export interface TypeScriptParserListener extends ParseTreeListener {
 	exitFunctionDeclaration?: (ctx: FunctionDeclarationContext) => void;
 
 	/**
+	 * Enter a parse tree produced by `TypeScriptParser.functionTypoDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterFunctionTypoDeclaration?: (ctx: FunctionTypoDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `TypeScriptParser.functionTypoDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitFunctionTypoDeclaration?: (ctx: FunctionTypoDeclarationContext) => void;
+
+	/**
 	 * Enter a parse tree produced by `TypeScriptParser.classDeclaration`.
 	 * @param ctx the parse tree
 	 */
@@ -2265,6 +2278,17 @@ export interface TypeScriptParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitClassDeclaration?: (ctx: ClassDeclarationContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `TypeScriptParser.classTypoDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	enterClassTypoDeclaration?: (ctx: ClassTypoDeclarationContext) => void;
+	/**
+	 * Exit a parse tree produced by `TypeScriptParser.classTypoDeclaration`.
+	 * @param ctx the parse tree
+	 */
+	exitClassTypoDeclaration?: (ctx: ClassTypoDeclarationContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `TypeScriptParser.classHeritage`.

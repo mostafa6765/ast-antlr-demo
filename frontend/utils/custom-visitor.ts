@@ -1,6 +1,6 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import { TypeScriptParserVisitor } from '@theGrammar/typescript/TypeScriptParserVisitor'
-import { AsExpressionContext, ClassDeclarationContext, ClassExpressionContext, FromBlockContext, FunctionBodyContext, FunctionDeclarationContext, FunctionExpressionContext, IdentifierExpressionContext, IdentifierNameContext, ImportStatementContext, NewExpressionContext, PropertyAssignmentContext, Type_Context, VariableDeclarationContext, VariableStatementContext } from '@theGrammar/typescript/TypeScriptParser'
+import { AsExpressionContext, ClassDeclarationContext, ClassExpressionContext, ClassTypoDeclarationContext, FromBlockContext, FunctionBodyContext, FunctionDeclarationContext, FunctionExpressionContext, FunctionTypoDeclarationContext, IdentifierExpressionContext, IdentifierNameContext, ImportStatementContext, NewExpressionContext, PropertyAssignmentContext, Type_Context, VariableDeclarationContext, VariableStatementContext } from '@theGrammar/typescript/TypeScriptParser'
 import getText from './ast-listener/lib/get-text'
 
 
@@ -25,10 +25,32 @@ class CustomVisitor extends AbstractParseTreeVisitor<any> implements TypeScriptP
     return '\n\n' + getText(ctx, this.rawInputData)
   }
 
+  // class keyword typo issue output.
+  visitClassTypoDeclaration(ctx: ClassTypoDeclarationContext) {
+    let text: string = `\n\n `
+    ctx.children.forEach((item: any) => {
+      if (item.constructor.name === 'ClassTailContext') {
+        text = `${text}${getText(item, this.rawInputData)}` 
+      }
+    })
+    return text
+  }
+
   visitFunctionDeclaration(ctx: FunctionDeclarationContext) {
     this.chunkData.push(getText(ctx, this.rawInputData))
     this.visitChildren(ctx)
     return '\n\n' + getText(ctx, this.rawInputData)
+  }
+
+  // function keyword typo issue output.
+  visitFunctionTypoDeclaration(ctx: FunctionTypoDeclarationContext) {
+    let text: string = `\n\n{ \n\t`
+    ctx.children.forEach((item: any) => {
+      if (item.constructor.name === 'FunctionBodyContext') {
+        text = `${text}${getText(item, this.rawInputData)}` 
+      }
+    })
+    return `${text}\n}`
   }
 
   visitFunctionExpression(ctx: FunctionExpressionContext) {

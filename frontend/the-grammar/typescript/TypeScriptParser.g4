@@ -344,6 +344,7 @@ statement
     | abstractDeclaration //ADDED
     | decoratorList
     | classDeclaration
+    | classTypoDeclaration
     | interfaceDeclaration //ADDED
     | namespaceDeclaration //ADDED
     | ifStatement
@@ -359,6 +360,7 @@ statement
     | tryStatement
     | debuggerStatement
     | functionDeclaration
+    | functionTypoDeclaration
     | arrowFunctionDeclaration
     | generatorFunctionDeclaration
     | variableStatement
@@ -507,9 +509,17 @@ functionDeclaration
     : Function_ Identifier callSignature ( ('{' functionBody '}') | SemiColon)
     ;
 
+functionTypoDeclaration
+    : ~(Function_) Identifier callSignature ( ('{' functionBody '}') | SemiColon)
+    ;
+
 //Ovveride ECMA
 classDeclaration
     : Abstract? Class Identifier typeParameters? classHeritage classTail
+    ;
+
+classTypoDeclaration
+    : Abstract? ~(Class) Identifier typeParameters? classHeritage classTail
     ;
 
 classHeritage

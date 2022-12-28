@@ -176,7 +176,9 @@ import { CatchProductionContext } from "./TypeScriptParser";
 import { FinallyProductionContext } from "./TypeScriptParser";
 import { DebuggerStatementContext } from "./TypeScriptParser";
 import { FunctionDeclarationContext } from "./TypeScriptParser";
+import { FunctionTypoDeclarationContext } from "./TypeScriptParser";
 import { ClassDeclarationContext } from "./TypeScriptParser";
+import { ClassTypoDeclarationContext } from "./TypeScriptParser";
 import { ClassHeritageContext } from "./TypeScriptParser";
 import { ClassTailContext } from "./TypeScriptParser";
 import { ClassExtendsClauseContext } from "./TypeScriptParser";
@@ -1503,11 +1505,25 @@ export interface TypeScriptParserVisitor<Result> extends ParseTreeVisitor<Result
 	visitFunctionDeclaration?: (ctx: FunctionDeclarationContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by `TypeScriptParser.functionTypoDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFunctionTypoDeclaration?: (ctx: FunctionTypoDeclarationContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by `TypeScriptParser.classDeclaration`.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	visitClassDeclaration?: (ctx: ClassDeclarationContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `TypeScriptParser.classTypoDeclaration`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitClassTypoDeclaration?: (ctx: ClassTypoDeclarationContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `TypeScriptParser.classHeritage`.
